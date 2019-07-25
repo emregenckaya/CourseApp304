@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtable').DataTable();
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $("#filter").submit(function () {
+                $(this).find(":input").filter(function () {
+                    console.log(this.value);
+                    return !this.value;
+                }).attr("disabled", "disabled");
+                return true;
+            });
+            $("form").find(":input").prop("disabled", false);
+        });
+    </script>
+</body>
+</html>
